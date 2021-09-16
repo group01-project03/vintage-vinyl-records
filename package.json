@@ -1,47 +1,22 @@
 {
-    "name": "frontend",
-    "proxy": "http://localhost:3001",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-      "nodemon": "^2.0.12",
-      "express": "^4.17.1",
-      "react": "^16.13.1",
-      "react-currency-format": "^1.0.0",
-      "react-redux": "^7.2.4",
-      "react-reveal": "^1.2.2",
-      "react-router-dom": "^5.2.0",
-      "react-scripts": "4.0.3",
-      "react-dom": "^16.13.1",
-      "redux": "^4.0.8",
-      "redux-devtools-extension": "^2.15.1",
-      "web-vitals": "^1.1.1"
-    },
-    "scripts": {
-      "start": "react-scripts start",
-      "build": "react-scripts build",
-      "test": "react-scripts test",
-      "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-      "extends": [
-        "react-app"
-      ]
-    },
-    "browserslist": {
-      "production": [
-        ">0.2%",
-        "not dead",
-        "not op_mini all"
-      ],
-      "development": [
-        "last 1 chrome version",
-        "last 1 firefox version",
-        "last 1 safari version"
-      ]
-    },
-    "devDependencies": {
-      "concurrently": "^6.5.2",
-      "nodemon": "^2.0.7"
-    }
-  }
+  "name": "vintage-vinyl-records",
+  "version": "1.0.0",
+  "description": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/group01-project03/vintage-vinyl-records.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/group01-project03/vintage-vinyl-records/issues"
+  },
+  "homepage": "https://github.com/group01-project03/vintage-vinyl-records#readme"
+}
