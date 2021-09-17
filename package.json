@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/group01-project03/vintage-vinyl-records/issues"
   },
-  "homepage": "https://github.com/group01-project03/vintage-vinyl-records#readme"
+  "homepage": "https://github.com/group01-project03/vintage-vinyl-records#readme",
+  "dependencies": {
+    "mongoose": "^6.0.6"
+  }
 }
