@@ -23,11 +23,11 @@ const RecordSchema = new Schema({
     image: {
         type:String
     },
-    // category: {
-    //     type: Schema.Types.ObjectId,
-    //     ref:'Category',
-    //     required: true
-    // }
+    genre: {
+        type: Schema.Types.ObjectId,
+        ref:'Genre',
+        required: true
+    }
 });
 
 // Create the Record model using RecordSchema

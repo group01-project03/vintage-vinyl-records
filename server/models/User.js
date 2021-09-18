@@ -2,8 +2,9 @@
 const {Schema, model}=require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import RecordSchema from Record.js
-const Record = require('./Record');
+// import OrderSchema from Order.js
+const Order = require('./Order');
+
 // Create the User Schema to include username, email, password and an array of records
 const UserSchema = new Schema({
     username:{
@@ -21,7 +22,7 @@ const UserSchema = new Schema({
         type: String,
         required:true,
     },
-    savedRecords:[Record.schema]
+    orders:[Order.schema]
 });
 
 // hash user password

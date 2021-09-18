@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-errors");
-const User = require("../models/User");
+const {User, Record, Genre, Order} = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,7 +7,10 @@ const resolvers = {
         me:async(parent,args,context)=>{
             if(context.user){
                 const userData = await User.findOne({id:context.user._id})
-                .populate('records');
+                .populate({
+                    path:'orders.records',
+                    populate:'genre'
+                });
 
             return userData;
             }
@@ -29,7 +32,6 @@ const resolvers = {
             }
 
             const correctPw=await user.isCorrectPassword(password);
-            console.log(correctPw);
 
             if(!correctPw){
                 throw new AuthenticationError('Incorrect credentials');

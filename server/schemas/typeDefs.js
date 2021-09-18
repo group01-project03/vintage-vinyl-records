@@ -2,6 +2,11 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
+type Genre {
+  _id: ID
+  name: String
+}
+
 type Record {
   _id: ID
   title: String
@@ -10,6 +15,13 @@ type Record {
   condition: String
   description: String
   price: Float
+  genre: Genre
+}
+
+type Order {
+  _id: ID
+  purchaseDate: String
+  records: [Record]
 }
 
 type User {
@@ -17,7 +29,7 @@ type User {
     username: String
     email: String
     RecordCount: Int
-    savedRecords: [Record]
+    orders: [Order]
   }
 
   type Query {
