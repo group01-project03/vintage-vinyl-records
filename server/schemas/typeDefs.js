@@ -8,8 +8,7 @@ type Record {
   year: Int
   condition: String
   description: String
-  title: String
-  price: Number
+  price: Float
 }
 
 type User {
@@ -35,8 +34,7 @@ input recordInfo {
     year: Int
     condition: String
     description: String
-    title: String
-    price: Number
+    price: Float
 }
 
 type Mutation {
