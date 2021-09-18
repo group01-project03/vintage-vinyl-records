@@ -3,8 +3,9 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
 type Record {
-  recordId: String
+  _id: ID
   title: String
+  image: String
   year: Int
   condition: String
   description: String
