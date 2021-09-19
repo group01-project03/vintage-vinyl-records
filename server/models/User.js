@@ -2,8 +2,9 @@
 const {Schema, model}=require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import RecordSchema from Record.js
-const RecordSchema = require('./Record');
+// import OrderSchema from Order.js
+const Order = require('./Order');
+
 // Create the User Schema to include username, email, password and an array of records
 const UserSchema = new Schema({
     username:{
@@ -21,11 +22,11 @@ const UserSchema = new Schema({
         type: String,
         required:true,
     },
-    savedRecords:[RecordSchema]
+    orders:[Order.schema]
 });
 
 // hash user password
-userSchema.pre('save', async function (next) {
+UserSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
       const saltRounds = 10;
       this.password = await bcrypt.hash(this.password, saltRounds);
@@ -35,7 +36,7 @@ userSchema.pre('save', async function (next) {
   });
   
   // custom method to compare and validate password for logging in
-  userSchema.methods.isCorrectPassword = async function (password) {
+  UserSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
   };
 

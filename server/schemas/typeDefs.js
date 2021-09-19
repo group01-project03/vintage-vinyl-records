@@ -2,14 +2,26 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
+type Genre {
+  _id: ID
+  name: String
+}
+
 type Record {
-  recordId: String
+  _id: ID
   title: String
+  image: String
   year: Int
   condition: String
   description: String
-  title: String
-  price: Number
+  price: Float
+  genre: Genre
+}
+
+type Order {
+  _id: ID
+  purchaseDate: String
+  records: [Record]
 }
 
 type User {
@@ -17,7 +29,7 @@ type User {
     username: String
     email: String
     RecordCount: Int
-    savedRecords: [Record]
+    orders: [Order]
   }
 
   type Query {
@@ -35,8 +47,7 @@ input recordInfo {
     year: Int
     condition: String
     description: String
-    title: String
-    price: Number
+    price: Float
 }
 
 type Mutation {
@@ -44,6 +55,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     saveRecord(input: recordInfo): User
     removeRecord(recordId: String!): User
+    addOrder(records:[ID]!):Order
   }
 `;
 
