@@ -55,6 +55,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     saveRecord(input: recordInfo): User
     removeRecord(recordId: String!): User
+    addOrder(records:[ID]!):Order
   }
 `;
 
