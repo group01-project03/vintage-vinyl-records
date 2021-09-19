@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import logo from './logo.svg';
 import { AppBar, IconButton, Toolbar, Badge } from '@material-ui/core/';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { logout } from '../utils/User';
+import { logout } from '../actions/User';
 import './Header.css'; // not created yet. 
 
 const Header = () => {
