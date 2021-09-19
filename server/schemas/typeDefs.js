@@ -34,6 +34,10 @@ type User {
 
   type Query {
     me: User
+    genres: [Genre]
+    records(genre:ID, title:String):[Record]
+    record(_id:ID!):Record
+    order(_id:ID!):Order
   }
 
 type Auth {
