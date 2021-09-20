@@ -17,7 +17,7 @@ function RecordList() {
   });
   const dispatch = useDispatch();
 
-  const { currentCategory } = state;
+  const { currentGenre } = state;
   const { loading, data } = useQuery(QUERY_RECORDS);
 
   useEffect(() => {
@@ -41,11 +41,11 @@ function RecordList() {
   }, [data, loading, dispatch]);
 
   function filterRecords() {
-    if (!currentCategory) {
+    if (!currentGenre) {
       return state.records;
     }
 
-    return state.records.filter(record => record.category._id === currentCategory);
+    return state.records.filter(record => record.genre._id === currentGenre);
   }
 
   return (
