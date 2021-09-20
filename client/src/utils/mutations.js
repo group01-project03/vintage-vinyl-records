@@ -15,16 +15,11 @@ export const LOGIN = gql`
 export const ADD_ORDER = gql`
   mutation addOrder($records: [ID]!) {
     addOrder(records: $records) {
-      purchaseDate
-      records {
-        _id
-      name
-      description
-      price
-      quantity
-      genre {
-        name
-      } 
+        purchaseDate
+        records {
+          _id: ID
+        purchaseDate: String
+        records: [Record]
       }
     }
   }
@@ -34,9 +29,11 @@ export const ADD_ORDER = gql`
 export const ADD_USER = gql`
   mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
     addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-      token
-      user {
-        _id
+        _id: ID
+        username: String
+        email: String
+        RecordCount: Int
+        orders: [Order]
       }
     }
   }
