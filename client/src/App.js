@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
+import { useDispatch, useSelector } from 'react-redux';
 
 import logo from './logo.svg';
 import Home from "./pages/Home";
@@ -12,6 +13,10 @@ import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
 import OrderHistory from "./pages/OrderHistory";
 import Success from "./pages/Success";
+import {loadStripe} from "@stripe/stripe-js";
+import {Elements} from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const client = new ApolloClient({
   request: (operation) => {

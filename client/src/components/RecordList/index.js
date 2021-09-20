@@ -28,7 +28,7 @@ function RecordList() {
         records: data.records
       });
       data.records.forEach((record) => {
-        idbPromise('records', 'put', records);
+        idbPromise('record', 'put', record);
       });
     } else if (!loading) {
       idbPromise('records', 'get').then((records) => {
@@ -53,14 +53,14 @@ function RecordList() {
       <h2>Our Available Titles:</h2>
       {state.records.length ? (
         <div className="flex-row">
-            {filterrecords().map(records => (
+            {filterRecords().map(records => (
                 <Genre
-                  key= {record._id}
+                  key= {records._id}
                   _id={records._id}
-                  image={record.image}
-                  name={record.name}
-                  price={record.price}
-                  quantity={record.quantity}
+                  image={records.image}
+                  name={records.name}
+                  price={records.price}
+                  quantity={records.quantity}
                 />
             ))}
         </div>

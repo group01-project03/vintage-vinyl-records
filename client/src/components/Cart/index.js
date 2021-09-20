@@ -11,7 +11,7 @@ import { useLazyQuery } from '@apollo/react-hooks';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx')
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
     const state = useSelector((state) => {

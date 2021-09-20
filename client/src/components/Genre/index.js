@@ -4,6 +4,7 @@ import { QUERY_GENRES } from "../../utils/queries";
 import { UPDATE_GENRES, UPDATE_CURRENT_GENRE } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import { useDispatch, useSelector } from 'react-redux';
+import {ApolloProvider} from '@apollo/react-hooks';
 
 function Genre() {
   const state = useSelector((state) => {
@@ -43,6 +44,7 @@ function Genre() {
   };
 
   return (
+    <ApolloProvider>
     <div>
       <h2>Choose a Genre:</h2>
       {genres.map(item => (
@@ -56,6 +58,7 @@ function Genre() {
         </button>
       ))}
     </div>
+    </ApolloProvider>
   );
 }
 

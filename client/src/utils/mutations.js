@@ -15,6 +15,23 @@ export const LOGIN = gql`
 export const ADD_ORDER = gql`
   mutation addOrder($records: [ID]!) {
     addOrder(records: $records) {
+      purchaseDate
+      records {
+        _id
+      name
+      description
+      price
+      quantity
+      genre {
+        name
+      } 
+      }
+    }
+  }
+`;
+
+    /*
+    addOrder(records: $records) {
         purchaseDate
         records {
           _id: ID
@@ -23,13 +40,22 @@ export const ADD_ORDER = gql`
       }
     }
   }
-`;
+`; */
 
 
 export const ADD_USER = gql`
   mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
     addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-        _id: ID
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
+      /*
+      _id: ID
         username: String
         email: String
         RecordCount: Int
@@ -37,4 +63,4 @@ export const ADD_USER = gql`
       }
     }
   }
-`;
+`; */
