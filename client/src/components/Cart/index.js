@@ -24,7 +24,7 @@ const Cart = () => {
     useEffect(() => {
         async function getCart() {
             const cart = await idbPromise('cart', 'get');
-            dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+            dispatch({ type: ADD_MULTIPLE_TO_CART, records: [...cart] });
         };
         if (!state.cart.length) {
             getCart();
@@ -42,7 +42,7 @@ const Cart = () => {
     if (!state.cartOpen) {
         return (
             <div className="cart-closed" onClick={Cart}>
-                <span role="img" aria-label="cart">🛒</span>
+                
             </div>
         )
     }
@@ -56,15 +56,15 @@ const Cart = () => {
     }
 
     function submitCheckout() {
-        const productIds = [];
+        const recordIds = [];
 
         getCheckout({
-            variables: { products: productIds }
+            variables: { records: recordIds }
         });
 
         state.cart.forEach((item) => {
             for (let i = 0; i < item.purchaseQuantity; i++) {
-                productIds.push(item._id)
+                recordIds.push(item._id)
             }
         });
     }

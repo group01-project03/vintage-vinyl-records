@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const QUERY_RECORDS = gql`
-  query getRecords($category: ID) {
+  query getRecords($genre: ID) {
     records(genre: $genre) {
       _id
       name
@@ -9,7 +9,7 @@ export const QUERY_RECORDS = gql`
       price
       quantity
       image
-      category {
+      genre {
         _id
       }
     }
@@ -24,7 +24,7 @@ export const QUERY_ALL_RECORDS = gql`
       description
       price
       quantity
-      category {
+      genre {
         name
       }
     }
