@@ -38,7 +38,7 @@ type User {
     records(genre:ID, title:String):[Record]
     record(_id:ID!):Record
     order(_id:ID!):Order
-    checkout(products: [ID]!): Checkout
+    checkout(records: [ID]!): Checkout
   }
 
 type Auth {
