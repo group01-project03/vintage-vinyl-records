@@ -4,6 +4,27 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
     Query:{
+        genres: async()=>{
+            return await Genre.find();
+        },
+        records: async(parent, {genre, title})=>{
+            const params={};
+
+            if(genre){
+                params.genre=genre;
+            }
+
+            if(title){
+                params.title = {
+                    $regex: title
+                };
+            }
+
+            return await Record.find(params).populate('genre');
+        },
+        record: async(parent,{_id})=>{
+            return await Record.findById(_id).populate('genre');
+        },
         me:async(parent,args,context)=>{
             if(context.user){
                 const userData = await User.findOne({id:context.user._id})
@@ -15,7 +36,19 @@ const resolvers = {
             return userData;
             }
             throw new AuthenticationError('Not logged in')
-        }
+        },
+        order: async (parent, {_id}, context)=>{
+            if(context.user) {
+                const user = await User.findById(context.user._id).populate({
+                    path: 'orders.records',
+                    populate:'genre'
+                });
+
+                return user.orders.id(_id);
+            }
+
+            throw new AuthenticationError('Not logged in');
+        },
     },
     Mutation: {
         addUser: async(parent, args)=>{

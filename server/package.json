@@ -16,9 +16,9 @@
     "nodemon": "^2.0.12"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "nodemon"
+    "watch": "nodemon",
+    "seed": "node config/seeds.js"
   },
   "author": "",
   "license": "ISC"
