@@ -50,6 +50,46 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
+        checkout: async (parent, args, context) => {
+            const url = new URL(context.headers.referer).origin;
+            const order = new Order({ records: args.records });
+            const { records } = await order.populate('records').execPopulate();
+
+            const line_items = [];
+
+            for (let i = 0; i < records.length; i++) {
+              // generate product id
+              const product = await stripe.products.create({
+                name: records[i].name,
+                description: records[i].description,
+                images: [`${url}/images/${records[i].image}`]
+              });
+            
+              // generate price id using the product id
+              const price = await stripe.prices.create({
+                product: product.id,
+                unit_amount: records[i].price * 100,
+                currency: 'usd',
+              });
+            
+              // add price id to the line items array
+              line_items.push({
+                price: price.id,
+                quantity: 1
+              });
+            }
+
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items,
+                mode: 'payment',
+                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${url}/`
+              });
+              
+              return { session: session.id };
+
+          }
     },
     Mutation: {
         addUser: async(parent, args)=>{
