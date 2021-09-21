@@ -4,12 +4,12 @@ export const QUERY_RECORDS = gql`
 query getRecords($genre: ID) {
   records(genre: $genre) {
     _id
-    name
+    title
     description
     price
     image
     genre {
-      _id
+      name
     }
   }
 }
@@ -38,7 +38,6 @@ records {
   title
   description
   price
-  quantity
   genre {
     name
   }
@@ -66,7 +65,7 @@ export const QUERY_GENRES = gql`
 {
   genres {
     _id
-    title
+    name
   }
 }
 `;
