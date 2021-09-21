@@ -27,7 +27,12 @@ const RecordSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref:'Genre',
         required: true
-    }
+    },
+    quantity: {
+        type: Number,
+        min: 0,
+        default: 0
+      },
 });
 
 // Create the Record model using RecordSchema

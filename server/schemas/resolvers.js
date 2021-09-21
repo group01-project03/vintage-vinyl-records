@@ -114,7 +114,19 @@ const resolvers = {
             const token = signToken(user);
 
             return {token, user};
-        }
+        },
+        updateUser: async (parent, args, context) => {
+            if (context.user) {
+              return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+            }
+      
+            throw new AuthenticationError('Not logged in');
+          },
+        updateRecord: async (parent, { _id, quantity }) => {
+            const decrement = Math.abs(quantity) * -1;
+      
+            return await Record.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+          }
     }
 };
 
