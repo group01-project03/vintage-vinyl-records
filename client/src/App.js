@@ -1,33 +1,55 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import logo from './logo.svg';
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './components/HomePage';
-import LoginPage from './components/LoginPage';
-import SignupPage from './components/SignupPage';
-import ProductPage from './components/ProductPage'; 
-import OrderPage from './components/OrderPage';
-import CartPage from './components/CartPage';
-import CheckoutPage from './components/CheckoutPage';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+import { useDispatch, useSelector } from 'react-redux';
 
-const App = () => {
+import logo from './logo.svg';
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
+import NoMatch from "./pages/NoMatch";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Nav from "./components/Nav";
+import OrderHistory from "./pages/OrderHistory";
+import Success from "./pages/Success";
+import {loadStripe} from "@stripe/stripe-js";
+import {Elements} from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+
+const client = new ApolloClient({
+  request: (operation) => {
+    const token = localStorage.getItem('id_token')
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    })
+  },
+  uri: '/graphql',
+})
+
+function App() {
   return (
-    <Router>
-        <Header/>
-          <Switch>
-            <Route path="/" component={HomePage}></Route>
-            <Route path="/login" component={LoginPage}></Route>
-            <Route path="/signup" component={SignupPage}></Route>
-            <Route path="/product/:id" component={ProductPage}></Route>
-            <Route path="/order/:id" component={OrderPage}></Route>
-            <Route path="/cart" component={CartPage}></Route>
-            <Route path="/checkout" component={CheckoutPage}></Route>
-          </Switch>
-        <Footer/>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <div>
+            <Nav />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/orderHistory" component={OrderHistory} />
+              <Route exact path="/records/:id" component={Detail} />
+              <Route exact path="/success" component={Success} />
+              <Route component={NoMatch} />
+            </Switch>
+        </div>
+      </Router>
+    </ApolloProvider>
+
   );
-};
+}
 
 export default App;
