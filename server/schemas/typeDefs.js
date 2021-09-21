@@ -64,7 +64,7 @@ type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String, password: String): User
     updateRecord(_id: ID!, quantity: Int!): Record
-    addOrder(records:[ID]!):Order
+    addOrder(records:[ID]!): Order
   }
 `;
 

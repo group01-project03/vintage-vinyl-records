@@ -98,6 +98,18 @@ const resolvers = {
 
             return{token, user};
         },
+        addOrder: async (parent, { records }, context) => {
+            console.log(context);
+            if (context.user) {
+              const order = new Order({ records });
+      
+              await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+      
+              return order;
+            }
+      
+            throw new AuthenticationError('Not logged in');
+          },
         login: async (parent, {email,password})=>{
             const user=await User.findOne({email});
 
