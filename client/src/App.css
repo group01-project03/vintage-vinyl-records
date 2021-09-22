@@ -1,6 +1,6 @@
 .title{
   text-align: center;
-  color: black;
+  color: white;
 }
 
 a {
@@ -22,10 +22,11 @@ a {
 .genre-btn{
   padding: 1rem;
   border: none;
-  margin-left: 0.1rem;
-  margin-right: 0.1rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
   background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgb(55, 110, 128) 0%,  rgba(0,212,255,1) 100%);
+  background: linear-gradient(90deg, rgb(122, 55, 128) 0%,  rgb(148, 23, 173) 100%);
+  color: white;
   border-radius: 0.5rem
 }
 
@@ -54,8 +55,72 @@ a {
 
 .card{
   margin-top: 1rem;
-  border:rgb(55, 110, 128) solid;
+  border:rgb(122, 55, 128) solid;
   padding: 1rem;
   border-radius: 0.5rem
 }
 
+.access-signup, .access-login{
+  font-size: 20px;
+  font-family: Arial;
+  border: solid black;
+  padding:10px;
+  background-color: white;
+  border-radius: 0.5rem;
+  font-weight:300;
+}
+
+header{
+  background-color:rgb(122, 55, 128);
+  padding: 1%;
+  color: white
+}
+
+.information{
+  padding: 8px
+}
+
+.signup-container, .login-container{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-right:40%;
+  margin-left: 40%;
+  border: solid black;
+  background-color: rgb(220, 199, 229)
+}
+
+.signup-title, .login-title{
+  text-align: center
+}
+
+.email, .password, .username, .submit-btn {
+  padding: 5px;
+}
+
+.submit{
+  padding: 1rem;
+  border: none;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgb(122, 55, 128) 0%,  rgb(148, 23, 173) 100%);
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.submit:hover{
+  background:  linear-gradient(90deg, rgb(115, 81, 118) 0%,  rgb(108, 73, 115) 100%);
+}
+
+.email-input, .password-input, .username-input{
+  padding: 5px;
+  border:rgb(149, 27, 129) solid;
+  border-radius: 0.5rem
+}
+
+.title-color{
+  color: white;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}

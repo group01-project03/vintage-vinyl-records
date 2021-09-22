@@ -55,7 +55,7 @@ function RecordItem(item) {
         />
         <p>{name}</p>
       </Link>
-      <div>
+      <div className="information">
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
