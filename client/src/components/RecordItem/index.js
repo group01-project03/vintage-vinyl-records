@@ -49,16 +49,17 @@ function RecordItem(item) {
     <div className="card px-1 py-1">
       <Link to={`/records/${_id}`}>
         <img
+          className="album-cover"
           alt={name}
           src={`/images/${image}`}
         />
         <p>{name}</p>
       </Link>
-      <div>
+      <div className="information">
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
+      <button className="genre-btn" onClick={addToCart}>Add to cart</button>
     </div>
   );
 }
