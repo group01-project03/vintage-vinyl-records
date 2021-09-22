@@ -23,7 +23,7 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex-row">
+        <ul className="flex-row nav-links">
           <li className="mx-1">
             <Link to="/signup">
               Signup
@@ -41,9 +41,9 @@ function Nav() {
 
   return (
     <header className="flex-row px-1">
-      <h1>
+      <h1 className="title">
         <Link to="/">
-        <span role="client/src/logo.svg" aria-label="client/src/logo.svg">logo</span>
+        <span  role="client/src/logo.svg" aria-label="client/src/logo.svg"></span>
           Vintage-Vinyl-Records
         </Link>
       </h1>

@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/group01-project03/vintage-vinyl-records#readme",
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "mongoose": "^6.0.6"
   }
 }

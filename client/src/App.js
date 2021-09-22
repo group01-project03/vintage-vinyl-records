@@ -15,6 +15,7 @@ import OrderHistory from "./pages/OrderHistory";
 import Success from "./pages/Success";
 import {loadStripe} from "@stripe/stripe-js";
 import {Elements} from "@stripe/react-stripe-js";
+import "./App.css"
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
