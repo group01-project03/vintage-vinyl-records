@@ -45,10 +45,12 @@ function Genre() {
 
   return (
     <ApolloProvider>
-    <div>
-      <h2>Choose a Genre:</h2>
+    <div className="genre-title">
+      <h2 className="genre">Choose a Genre:</h2>
+      <div className="genre-btn-container">
       {genres.map(item => (
         <button
+          className="genre-btn"
           key={item._id}
           onClick={() => {
             handleClick(item._id);
@@ -56,7 +58,9 @@ function Genre() {
         >
           {item.name}
         </button>
+        
       ))}
+      </div>
     </div>
     </ApolloProvider>
   );

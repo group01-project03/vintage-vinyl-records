@@ -33,25 +33,28 @@ function Login(props) {
         ← Go to Signup
       </Link>
 
-      <h2>Login</h2>
+      <h2 className="login-title">Login</h2>
+      <div className="login-container">
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+        <div className="flex-row space-between my-2 email">
           <label htmlFor="email">Email:</label>
           <input
             placeholder="youremail@test.com"
             name="email"
             type="email"
             id="email"
+            className="email-input"
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="flex-row space-between my-2 password">
           <label htmlFor="pwd">Password:</label>
           <input
             placeholder="******"
             name="password"
             type="password"
             id="pwd"
+            className="password-input"
             onChange={handleChange}
           />
         </div>
@@ -60,12 +63,13 @@ function Login(props) {
             <p className="error-text" >Your email or password are incorrect.</p>
           </div> : null
         }
-        <div className="flex-row flex-end">
-          <button type="submit">
+        <div className="flex-row flex-end submit-btn">
+          <button type="submit" className="submit">
             Submit
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 }

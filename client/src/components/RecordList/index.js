@@ -54,7 +54,7 @@ function RecordList() {
     <div className="my-2">
       <h2>Our Available Titles:</h2>
       {state.records.length ? (
-        <div className="flex-row">
+        <div className="flex-row album-grid">
             {filterRecords().map(records => (
                 <RecordItem
                   key= {records._id}

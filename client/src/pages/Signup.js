@@ -35,44 +35,49 @@ function Signup(props) {
         ← Go to Login
       </Link>
 
-      <h2>Signup</h2>
+      <h2 className="signup-title">Signup</h2>
+      <div className="signup-container">
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+        <div className="flex-row space-between my-2 username">
           <label htmlFor="Username">Username:</label>
           <input
             placeholder="username"
             name="username"
             type="username"
             id="username"
+            className="username-input"
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="flex-row space-between my-2 email">
           <label htmlFor="email">Email:</label>
           <input
             placeholder="youremail@test.com"
             name="email"
             type="email"
             id="email"
+            className="email-input"
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="flex-row space-between my-2 password">
           <label htmlFor="pwd">Password:</label>
           <input
             placeholder="******"
             name="password"
             type="password"
             id="pwd"
+            className="password-input"
             onChange={handleChange}
           />
         </div>
         <div className="flex-row flex-end">
-          <button type="submit">
+          <button type="submit" className="submit">
             Submit
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 
