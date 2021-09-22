@@ -21,5 +21,8 @@
   "homepage": "https://github.com/group01-project03/vintage-vinyl-records#readme",
   "dependencies": {
     "mongoose": "^6.0.6"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
   }
 }
