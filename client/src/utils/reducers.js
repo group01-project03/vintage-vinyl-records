@@ -7,6 +7,7 @@ import {
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
+    TOGGLE_CART
   } from './actions';
 
 // default state  
@@ -73,6 +74,12 @@ const reducer = (state=defaultState, action) => {
                 ...state,
                 cartOpen: false,
                 cart: []
+            };
+
+        case TOGGLE_CART:
+            return {
+                ...state,
+                cartOpen: !state.cartOpen
             };
 
         default:
