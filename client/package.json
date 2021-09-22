@@ -2,13 +2,31 @@
   "name": "vintage-vinyl-records",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
+  "secure": false,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@apollo/react-hooks": "^4.0.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.17.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@vcl/form-control-label": "^0.6.3",
+    "apollo-boost": "^0.4.9",
+    "apollo-link-context": "^1.0.20",
+    "axios": "^0.21.4",
+    "graphql": "^15.6.0",
+    "graphql-tag": "^2.12.5",
+    "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
+    "react-apollo": "^3.1.5",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.1",
+    "stripe": "^8.176.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -34,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1"
   }
 }
