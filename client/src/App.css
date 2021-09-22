@@ -155,7 +155,7 @@ header{
   top: .5rem;
   right: .5rem;
   cursor: pointer;
-  color: var(--tertiary);
+  color: black;
 }
 
 .cart .close:hover {
@@ -168,7 +168,7 @@ header{
   right: 1%;
   font-size: 2rem;
   cursor: pointer;
-  background-color: var(--secondary);
+  background-color: white;
   border-radius: 50%;
   padding: .25rem;
   width: 50px;
