@@ -7,13 +7,13 @@ function Nav() {
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
+        <ul className="flex-row nav-links">
+          <li className="mx-1 access-signup">
             <Link to="/orderHistory">
               Order History
             </Link>
           </li>
-          <li className="mx-1">
+          <li className="mx-1 access-login">
             {}
             <a href="/" onClick={() => Auth.logout()}>
               Logout
