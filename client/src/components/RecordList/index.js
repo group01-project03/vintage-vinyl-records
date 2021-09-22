@@ -10,6 +10,8 @@ import { idbPromise } from "../../utils/helpers";
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import RecordItem from "../RecordItem"
+
 function RecordList() {
 
   const state = useSelector((state) => {
@@ -28,7 +30,7 @@ function RecordList() {
         records: data.records
       });
       data.records.forEach((record) => {
-        idbPromise('record', 'put', record);
+        idbPromise('records', 'put', record);
       });
     } else if (!loading) {
       idbPromise('records', 'get').then((records) => {
@@ -54,7 +56,7 @@ function RecordList() {
       {state.records.length ? (
         <div className="flex-row">
             {filterRecords().map(records => (
-                <Genre
+                <RecordItem
                   key= {records._id}
                   _id={records._id}
                   image={records.image}
