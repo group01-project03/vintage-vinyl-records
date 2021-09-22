@@ -52,7 +52,7 @@ function RecordList() {
 
   return (
     <div className="my-2">
-      <h2>Our Available Titles:</h2>
+      <h2 className="records">Our Available Titles:</h2>
       {state.records.length ? (
         <div className="flex-row album-grid">
             {filterRecords().map(records => (
