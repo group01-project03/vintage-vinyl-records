@@ -52,23 +52,21 @@ const resolvers = {
         },
         checkout: async (parent, args, context) => {
             const order=new Order({records:args.records});
-            console.log(order);
             const { records } = await order.populate('records').execPopulate();
-            // const url = new URL(context.headers.referer).origin;
-            
+            const url = new URL(context.headers.referer).origin;
             const line_items = [];
 
             for (let i = 0; i < records.length; i++) {
               // generate record id
-              const record = await stripe.records.create({
-                title: records[i].title,
+              const product = await stripe.products.create({
+                name: records[i].title,
                 description: records[i].description,
-                // images: [`${url}/images/${records[i].image}`]
+                images: [`${url}/images/${records[i].image}`]
               });
             
               // generate price id using the product id
               const price = await stripe.prices.create({
-                record: record.id,
+                product: product.id,
                 unit_amount: records[i].price * 100,
                 currency: 'cad',
               });
@@ -84,10 +82,8 @@ const resolvers = {
                 payment_method_types: ['card'],
                 line_items,
                 mode: 'payment',
-                success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url: 'https://example.com/cancel'
-                // success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-                // cancel_url: `${url}/`
+                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${url}/`
               });
               
               return { session: session.id };
