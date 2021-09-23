@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/vintage-vinyl-records',{
-    // useFindAndModify: false,
+    useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true,
+    useCreateIndex: true,
 });
 
 // to log mongo queries being executed!
