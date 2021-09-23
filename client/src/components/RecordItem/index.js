@@ -1,25 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
-
+import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from '../../utils/helpers';
 
-import { useDispatch, useSelector } from 'react-redux';
-
 function RecordItem(item) {
+  const [state,dispatch] = useStoreContext();
+
   const {
     image,
-    name,
+    title,
     _id,
     price,
     quantity
   } = item;
-
-  const state = useSelector((state) => {
-    return state;
-  });
-  const dispatch = useDispatch();
 
   const { cart } = state;
 
@@ -44,16 +39,15 @@ function RecordItem(item) {
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
   };
-
   return (
     <div className="card px-1 py-1">
       <Link to={`/records/${_id}`}>
         <img
           className="album-cover"
-          alt={name}
+          alt={title}
           src={`/images/${image}`}
         />
-        <p>{name}</p>
+        <p>{title}</p>
       </Link>
       <div className="information">
         <div>{quantity} {pluralize("item", quantity)} in stock</div>

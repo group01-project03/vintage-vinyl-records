@@ -21,6 +21,7 @@ export const ADD_ORDER = gql`
       title
       description
       price
+      quantity
       genre {
         name
       } 
@@ -28,19 +29,6 @@ export const ADD_ORDER = gql`
     }
   }
 `;
-
-    /*
-    addOrder(records: $records) {
-        purchaseDate
-        records {
-          _id: ID
-        purchaseDate: String
-        records: [Record]
-      }
-    }
-  }
-`; */
-
 
 export const ADD_USER = gql`
 mutation addUser($username: String! $email: String!, $password: String!) {
@@ -52,15 +40,3 @@ mutation addUser($username: String! $email: String!, $password: String!) {
   }
 }
 `;
-
-
-      /*
-      _id: ID
-        username: String
-        email: String
-        RecordCount: Int
-        orders: [Order]
-      }
-    }
-  }
-`; */

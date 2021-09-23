@@ -1,23 +1,15 @@
 import React, { useEffect } from "react";
-import { useQuery } from '@apollo/react-hooks';
-
-import Genre from "../Genre";
-import { QUERY_RECORDS } from "../../utils/queries";
-
-import { UPDATE_RECORDS } from "../../utils/actions";
-
-import { idbPromise } from "../../utils/helpers";
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useQuery } from '@apollo/client';
 
 import RecordItem from "../RecordItem"
+import { useStoreContext } from "../../utils/GlobalState";
+import { UPDATE_RECORDS } from "../../utils/actions";
+import { QUERY_RECORDS } from "../../utils/queries";
+import { idbPromise } from "../../utils/helpers";
+
 
 function RecordList() {
-
-  const state = useSelector((state) => {
-    return state;
-  });
-  const dispatch = useDispatch();
+  const [state, dispatch] = useStoreContext();
 
   const { currentGenre } = state;
   const { loading, data } = useQuery(QUERY_RECORDS);
@@ -47,7 +39,8 @@ function RecordList() {
       return state.records;
     }
 
-    return state.records.filter(record => record.genre._id === currentGenre);
+    return state.records.filter(
+      (record) => record.genre._id === currentGenre);
   }
 
   return (
@@ -55,14 +48,14 @@ function RecordList() {
       <h2 className="records">Our Available Titles:</h2>
       {state.records.length ? (
         <div className="flex-row album-grid">
-            {filterRecords().map(records => (
+            {filterRecords().map((record) => (
                 <RecordItem
-                  key= {records._id}
-                  _id={records._id}
-                  image={records.image}
-                  name={records.name}
-                  price={records.price}
-                  quantity={records.quantity}
+                  key= {record._id}
+                  _id={record._id}
+                  image={record.image}
+                  title={record.title}
+                  price={record.price}
+                  quantity={record.quantity}
                 />
             ))}
         </div>

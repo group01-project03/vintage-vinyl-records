@@ -3,21 +3,19 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
 import styled from '@emotion/styled'; 
 
+import { useStoreContext } from "../utils/GlobalState";
+import { 
+  UPDATE_RECORDS, 
+  REMOVE_FROM_CART, 
+  UPDATE_CART_QUANTITY, 
+  ADD_TO_CART 
+} from '../utils/actions';
 import { QUERY_RECORDS } from "../utils/queries";
-
-import { UPDATE_RECORDS, REMOVE_FROM_CART, UPDATE_CART_QUANTITY, ADD_TO_CART } from '../utils/actions';
-
+import { idbPromise } from "../utils/helpers";
 import Cart from "../components/Cart";
 
-import { idbPromise } from "../utils/helpers";
-
-import { useDispatch, useSelector } from 'react-redux';
-
 function Detail() {
-  const state = useSelector((state) => {
-    return state;
-  });
-  const dispatch = useDispatch();
+  const [state, dispatch] = useStoreContext();
   const { id } = useParams();
   
   const [currentRecord, setCurrentRecord] = useState({})
@@ -26,30 +24,6 @@ function Detail() {
   
   const { records, cart } = state;
   
-  useEffect(() => {
-    if (records.length) {
-      setCurrentRecord(records.find(record => record._id === id));
-    } else if (data) {
-      // retrieve data from the server
-      dispatch({
-        type: UPDATE_RECORDS,
-        records: data.records
-      });
-      // store data in IndexedDB
-      data.records.forEach((record) => {
-        idbPromise('records', 'put', record);
-      });
-    // if the user is offline, use the cached data in IndexedDB
-    } else if (!loading) {
-      idbPromise('records', 'get').then((indexedRecords) => {
-        dispatch({
-          type: UPDATE_RECORDS,
-          records: indexedRecords
-        });
-      });
-    }
-  }, [records, data, loading, dispatch, id]);
-
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id);
 
@@ -86,6 +60,30 @@ function Detail() {
     idbPromise('cart', 'delete', { ...currentRecord })
   };
 
+  useEffect(() => {
+    if (records.length) {
+      setCurrentRecord(records.find((record) => record._id === id));
+    } else if (data) {
+      // retrieve data from the server
+      dispatch({
+        type: UPDATE_RECORDS,
+        records: data.records
+      });
+      // store data in IndexedDB
+      data.records.forEach((record) => {
+        idbPromise('records', 'put', record);
+      });
+    // if the user is offline, use the cached data in IndexedDB
+    } else if (!loading) {
+      idbPromise('records', 'get').then((indexedRecords) => {
+        dispatch({
+          type: UPDATE_RECORDS,
+          records: indexedRecords
+        });
+      });
+    }
+  }, [records, data, loading, dispatch, id]);
+
   return (
     <>
       {currentRecord ? (
@@ -94,11 +92,8 @@ function Detail() {
             ← Back to Records
           </Link>
 
-          <h2>{currentRecord.name}</h2>
-
-          <p>
-            {currentRecord.description}
-          </p>
+          <h2>{currentRecord.title}</h2>
+          <p>{currentRecord.description}</p>
 
           <p>
             <strong>Price:</strong>
@@ -114,10 +109,9 @@ function Detail() {
               Remove from Cart
             </button>
           </p>
-
           <img
             src={`/images/${currentRecord.image}`}
-            alt={currentRecord.name}
+            alt={currentRecord.title}
           />
         </div>
       ) : null}

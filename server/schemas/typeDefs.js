@@ -16,6 +16,7 @@ type Record {
   description: String
   price: Float
   genre: Genre
+  quantity: Int
 }
 
 type Order {
