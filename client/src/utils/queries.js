@@ -8,28 +8,13 @@ query getRecords($genre: ID) {
     description
     price
     image
+    quantity
     genre {
       _id
     }
   }
 }
 `;
-
-
-/*
-  query getRecords($genre: ID) {
-    records(genre: $genre) {
-        title: String
-        image: String
-        year: Int
-        condition: String
-        description: String
-        price: Float
-        genre: Genre
-      }
-    }
-  }
-`; */
 
 export const QUERY_ALL_RECORDS = gql`
 {
@@ -41,28 +26,13 @@ export const QUERY_ALL_RECORDS = gql`
     condition
     price
     image
+    quantity
     genre {
       name
     }
   }
 }
 `;
-
-/*
-  {
-    title: String
-    image: String
-    year: Int
-    condition: String
-    description: String
-    price: Float
-    genre: Genre
-      }
-    }
-  }
-`;
-*/  
-
 
 export const QUERY_GENRES = gql`
 {
@@ -73,18 +43,10 @@ export const QUERY_GENRES = gql`
 }
 `;
 
-/*
-{
-    _id: ID
-  name: String
-}
-`;
-*/
-
 export const QUERY_USER = gql`
 
 {
-  user {
+  me {
     username
     orders {
       _id
@@ -94,21 +56,13 @@ export const QUERY_USER = gql`
         title
         description
         price
+        quantity
         image
       }
     }
   }
 }
 `;
-/*
-{
-    _id: ID
-    username: String
-    email: String
-    RecordCount: Int
-    orders: [Order]
-}
-`; */
 
 export const QUERY_CHECKOUT = gql`
 
@@ -118,12 +72,3 @@ query getCheckout($records: [ID]!) {
   }
 }
 `;
-
-/*
-  query getCheckout($records: [ID]!) {
-    checkout(records: $records) {
-      session
-    }
-  }
-`;
-*/

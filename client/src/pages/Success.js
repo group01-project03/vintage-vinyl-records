@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import Jumbotron from '../components/Jumbotron';
 import { ADD_ORDER } from '../utils/mutations';
 import { idbPromise } from "../utils/helpers";
@@ -10,15 +10,13 @@ function Success() {
     useEffect(() => {
         async function saveOrder() {
             const cart = await idbPromise('cart', 'get');
-            const records = cart.map(item => item._id);
+            const records = cart.map((item) => item._id);
 
-            if (records.length) {
                 const { data } = await addOrder({ variables: { records } });
                 const recordData = data.addOrder.records;
                 recordData.forEach((item) => {
                     idbPromise('cart', 'delete', item);
                 });
-            }
 
             setTimeout(() => {
                 window.location.assign('/')

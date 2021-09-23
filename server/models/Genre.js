@@ -12,5 +12,5 @@ const GenreSchema = new Schema({
 // Create the Genre model using GenreSchema
 const Genre = model('Genre',GenreSchema);
 
-// export the Record Schema
+// export the Genre Schema
 module.exports=Genre;

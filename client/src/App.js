@@ -1,34 +1,41 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink
+ } from '@apollo/client';
+import {setContext} from '@apollo/client/link/context';
 
-import logo from './logo.svg';
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
+import { StoreProvider } from './utils/GlobalState';
 import OrderHistory from "./pages/OrderHistory";
 import Success from "./pages/Success";
-import {loadStripe} from "@stripe/stripe-js";
-import {Elements} from "@stripe/react-stripe-js";
 import "./App.css"
 
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+const httpLink = createHttpLink({
+  uri:'/graphql',
+});
+
+const authLink = setContext((_,{headers})=> {
+  const token = localStorage.getItem('id_token');
+  return{
+    headers:{
+      ...headers,
+      authorization: token?`Bearer ${token}`:'',
+    },
+  };
+});
 
 const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem('id_token')
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : ''
-      }
-    })
-  },
-  uri: '/graphql',
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 })
 
 function App() {
@@ -36,6 +43,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
+          <StoreProvider>
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
@@ -46,6 +54,7 @@ function App() {
               <Route exact path="/success" component={Success} />
               <Route component={NoMatch} />
             </Switch>
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>

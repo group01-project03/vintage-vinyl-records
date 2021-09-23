@@ -51,10 +51,10 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
         checkout: async (parent, args, context) => {
-            const url = new URL(context.headers.referer).origin;
             const order = new Order({ records: args.records });
             const { records } = await order.populate('records').execPopulate();
-
+            const url = new URL(context.headers.referer).origin;
+            
             const line_items = [];
 
             for (let i = 0; i < records.length; i++) {
@@ -88,7 +88,6 @@ const resolvers = {
               });
               
               return { session: session.id };
-
           }
     },
     Mutation: {
@@ -99,7 +98,6 @@ const resolvers = {
             return{token, user};
         },
         addOrder: async (parent, { records }, context) => {
-            console.log(context);
             if (context.user) {
               const order = new Order({ records });
       
