@@ -10,4 +10,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/vintage-vinyl-r
 // to log mongo queries being executed!
 mongoose.set('debug',true);
 
-module.exports=mongoose.connection;
+module.exports = mongoose.connection;
