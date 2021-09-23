@@ -55,7 +55,7 @@ db.once('open', async()=>{
             price:75.00,
             image: 'bruce-springsteen.jpg',
             genre: genres[3]._id,
-            quanity:7
+            quantity:7
         },
         {
             title:'Nobody Else But Me',
