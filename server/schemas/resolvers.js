@@ -61,7 +61,7 @@ const resolvers = {
             for (let i = 0; i < records.length; i++) {
               // generate record id
               const record = await stripe.records.create({
-                name: records[i].name,
+                title: records[i].title,
                 description: records[i].description,
                 // images: [`${url}/images/${records[i].image}`]
               });
@@ -84,8 +84,10 @@ const resolvers = {
                 payment_method_types: ['card'],
                 line_items,
                 mode: 'payment',
-                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${url}/`
+                success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url: 'https://example.com/cancel'
+                // success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                // cancel_url: `${url}/`
               });
               
               return { session: session.id };
