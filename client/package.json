@@ -2,7 +2,6 @@
   "name": "vintage-vinyl-records",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
   "secure": false,
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
@@ -16,6 +15,7 @@
     "apollo-boost": "^0.4.9",
     "apollo-link-context": "^1.0.20",
     "axios": "^0.21.4",
+    "concurrently": "^6.2.1",
     "graphql": "^15.6.0",
     "graphql-tag": "^2.12.5",
     "jwt-decode": "^3.1.2",
