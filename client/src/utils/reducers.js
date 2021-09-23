@@ -1,3 +1,5 @@
+import {useReducer} from 'react';
+
 import {
     UPDATE_RECORDS,
     UPDATE_GENRES,
@@ -7,18 +9,10 @@ import {
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
     CLEAR_CART,
+    TOGGLE_CART
   } from './actions';
 
-// default state  
-const defaultState = {
-    records: [],
-    genres: [],
-    currentGenre: '',
-    cart: [],
-    cartOpen: false
-}
-
-const reducer = (state=defaultState, action) => {
+export const reducer = (state, action) => {
     switch (action.type) {
         case UPDATE_RECORDS:
             return {
@@ -39,7 +33,7 @@ const reducer = (state=defaultState, action) => {
             return {
               ...state,
               cartOpen: true,
-              cart: [...state.cart, action.records]  
+              cart: [...state.cart, action.record]  
             };
         case ADD_MULTIPLE_TO_CART:
             return {
@@ -67,12 +61,16 @@ const reducer = (state=defaultState, action) => {
                     return record;
                 })
             };
-
         case CLEAR_CART:
             return {
                 ...state,
                 cartOpen: false,
                 cart: []
+            };
+        case TOGGLE_CART:
+            return {
+                ...state,
+                cartOpen:!state.cartOpen
             };
 
         default:
@@ -80,4 +78,6 @@ const reducer = (state=defaultState, action) => {
     }
 };
 
-export default reducer;
+export function useRecordReducer(initialState){
+    return useReducer(reducer, initialState);
+}

@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
+import { useStoreContext } from "../../utils/GlobalState";
 import { QUERY_GENRES } from "../../utils/queries";
-import { UPDATE_GENRES, UPDATE_CURRENT_GENRE } from "../../utils/actions";
+import { 
+  UPDATE_GENRES, 
+  UPDATE_CURRENT_GENRE 
+} from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
-import { useDispatch, useSelector } from 'react-redux';
-import {ApolloProvider} from '@apollo/react-hooks';
 
 function Genre() {
-  const state = useSelector((state) => {
-    return state;
-  });
-  const dispatch = useDispatch();
-
+  const [state, dispatch]=useStoreContext();
   const { genres } = state;
   const { loading, data: genreData } = useQuery(QUERY_GENRES);
 
@@ -36,7 +34,7 @@ function Genre() {
     }
   }, [genreData, loading, dispatch])
 
-  const handleClick = id => {
+  const handleClick = (id) => {
     dispatch({
       type: UPDATE_CURRENT_GENRE,
       currentGenre: id
@@ -44,11 +42,10 @@ function Genre() {
   };
 
   return (
-    <ApolloProvider>
     <div className="genre-title">
       <h2 className="genre">Choose a Genre:</h2>
       <div className="genre-btn-container">
-      {genres.map(item => (
+      {genres.map((item) => (
         <button
           className="genre-btn"
           key={item._id}
@@ -58,11 +55,9 @@ function Genre() {
         >
           {item.name}
         </button>
-        
       ))}
       </div>
     </div>
-    </ApolloProvider>
   );
 }
 
