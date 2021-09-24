@@ -47,11 +47,7 @@ function RecordItem(item) {
           alt={title}
           src={`/images/${image}`}
         />
-
-        <div className="overlap">
-          <p>{title}</p>
-        </div>
-
+        <div className="overlap"><p>{title}</p></div>
       </Link>
       <div className="information">
         <div>{quantity} {pluralize("item", quantity)} in stock</div>

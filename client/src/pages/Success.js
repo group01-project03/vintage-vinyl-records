@@ -11,13 +11,13 @@ function Success() {
         async function saveOrder() {
             const cart = await idbPromise('cart', 'get');
             const records = cart.map((item) => item._id);
-            if (records.length) {
+
                 const { data } = await addOrder({ variables: { records } });
                 const recordData = data.addOrder.records;
                 recordData.forEach((item) => {
                     idbPromise('cart', 'delete', item);
                 });
-            }
+
             setTimeout(() => {
                 window.location.assign('/')
             }, 3000)
