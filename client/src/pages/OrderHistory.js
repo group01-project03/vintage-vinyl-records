@@ -7,7 +7,7 @@ import { QUERY_USER } from "../utils/queries";
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
   let user;
-  console.log(data);
+
   if (data) {
     user = data.user;
   }
