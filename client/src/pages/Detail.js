@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import styled from '@emotion/styled'; 
 
 import { useStoreContext } from "../utils/GlobalState";
