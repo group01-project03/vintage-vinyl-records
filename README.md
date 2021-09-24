@@ -14,7 +14,7 @@ A web application which allows the user to navigate through the site to view and
 
  ## Website 
 
-**URL**: https://warm-river-29278.herokuapp.com
+**URL**: https://vintage-vinyls.herokuapp.com/
 
 ## Installation
   1. Clone the files from the repository onto your local machine
