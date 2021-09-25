@@ -30,6 +30,18 @@ a {
   border-radius: 0.5rem
 }
 
+.genre-btn-record{
+  padding: 1rem;
+  border: none;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  margin-top: 1rem;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgb(122, 55, 128) 0%,  rgb(148, 23, 173) 100%);
+  color: white;
+  border-radius: 0.5rem
+}
+
 .genre-btn:hover{
   background: linear-gradient(90deg, rgb(147, 173, 181) 0%,  rgb(144, 179, 186) 100%);
 }
@@ -61,7 +73,19 @@ a {
   margin-top: 1rem;
   border:rgb(122, 55, 128) solid;
   padding: 1rem;
-  border-radius: 0.5rem
+  border-radius: 0.5rem;
+}
+
+.card-record{
+  margin-top: 1rem;
+  border:rgb(122, 55, 128) solid;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction:column;
+  margin-right:40%;
+  margin-left:40%;
 }
 
 .access-signup, .access-login{
@@ -81,7 +105,7 @@ header{
 }
 
 .information{
-  padding: 8px
+  padding: 8px;
 }
 
 .signup-container, .login-container{

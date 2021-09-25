@@ -91,7 +91,7 @@ function Detail() {
           <Link to="/">
             ← Back to Records
           </Link>
-
+          <div className="card-record">
           <h2>{currentRecord.title}</h2>
           <p>{currentRecord.description}</p>
 
@@ -99,10 +99,12 @@ function Detail() {
             <strong>Price:</strong>
             ${currentRecord.price}
             {" "}
-            <button onClick={addToCart}>
+            <br />
+            <button onClick={addToCart} className="genre-btn-record">
               Add to Cart
             </button>
             <button 
+              className="genre-btn-record"
               disabled={!cart.find(p => p._id === currentRecord._id)} 
               onClick={removeFromCart}
             >
@@ -110,9 +112,11 @@ function Detail() {
             </button>
           </p>
           <img
+            className="album-cover-record"
             src={`/images/${currentRecord.image}`}
             alt={currentRecord.title}
           />
+          </div>
         </div>
       ) : null}
       <Cart />
