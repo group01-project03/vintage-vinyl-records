@@ -49,11 +49,13 @@ function RecordItem(item) {
         />
         <div className="overlap"><p>{title}</p></div>
       </Link>
+      <div className="record-position">
       <div className="information">
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
       <button className="genre-btn" onClick={addToCart}>Add to cart</button>
+    </div>
     </div>
   );
 }

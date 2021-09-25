@@ -42,6 +42,12 @@ a {
   border-radius: 0.5rem
 }
 
+.record-position{
+  position: absolute;
+    bottom: 0;
+  margin-bottom: 30px;
+}
+
 .genre-btn:hover{
   background: linear-gradient(90deg, rgb(147, 173, 181) 0%,  rgb(144, 179, 186) 100%);
 }
@@ -70,10 +76,12 @@ a {
 }
 
 .card{
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   border:rgb(122, 55, 128) solid;
   padding: 1rem;
   border-radius: 0.5rem;
+  height: 400px;
+  position: relative;
 }
 
 .card-record{
