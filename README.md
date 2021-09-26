@@ -20,12 +20,14 @@ This application can be accessed using the deployed Heroku URL as found [here]( 
 To connect to the application on their local host address, the user must clone the repository from GitHub. Once cloned, the user will open their terminal and `npm install` the dependencies as found in the package.json files for the client and sevrer folders. They must also assure that they have MongoDB installed on their computer and then run `npm run seed`. Finally, the user will connect to the server by running `npm run develop` in the root directory. 
 
 ## License
-MIT[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-`[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+MIT [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 
 ## Usage
 The application allows the user to access, store, and save items of interest to their account and also allows them to securely complete their transaction. 
+
 ### Application GIF
+
+https://user-images.githubusercontent.com/81194686/134813575-46138f48-8920-4e37-b792-e4cbcabdeb93.mp4
 
 ## Guidelines 
 ### User Story:
@@ -68,7 +70,7 @@ THEN the application is still responsive, and I can still view and save records 
  ```
 
 ## Links
-•	[Heroku Deployment]( https://vintage-vinyls.herokuapp.com/)
+*	[Heroku Deployment]( https://vintage-vinyls.herokuapp.com/)
 
 
 ## Tools
