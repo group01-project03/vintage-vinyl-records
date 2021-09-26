@@ -32,7 +32,7 @@ function Genre() {
         });
       });
     }
-  }, [genreData, loading, dispatch])
+  }, [genreData, loading, dispatch]);
 
   const handleClick = (id) => {
     dispatch({
