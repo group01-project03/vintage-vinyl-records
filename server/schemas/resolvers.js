@@ -28,7 +28,7 @@ const resolvers = {
         },
         me:async(parent,args,context)=>{
             if(context.user){
-                const userData = await User.findOne({id:context.user._id})
+                const userData = await User.findById(context.user._id)
                 .populate({
                     path:'orders.records',
                     populate:'genre'
@@ -51,13 +51,13 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
         checkout: async (parent, args, context) => {
+            const url = new URL(context.headers.referer).origin;
             const order=new Order({records:args.records});
             const { records } = await order.populate('records').execPopulate();
-            const url = new URL(context.headers.referer).origin;
             const line_items = [];
 
             for (let i = 0; i < records.length; i++) {
-              // generate record id
+              // generate product id
               const product = await stripe.products.create({
                 name: records[i].title,
                 description: records[i].description,
@@ -106,7 +106,7 @@ const resolvers = {
             }
       
             throw new AuthenticationError('Not logged in');
-          },
+        },
         login: async (parent, {email,password})=>{
             const user=await User.findOne({email});
 
@@ -130,13 +130,13 @@ const resolvers = {
             }
       
             throw new AuthenticationError('Not logged in');
-          },
+        },
         updateRecord: async (parent, { _id, quantity }) => {
             const decrement = Math.abs(quantity) * -1;
       
             return await Record.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-          }
+        }
     }
 };
 
-module.exports=resolvers;
+module.exports = resolvers;

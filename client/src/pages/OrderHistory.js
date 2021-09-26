@@ -7,9 +7,9 @@ import { QUERY_USER } from "../utils/queries";
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
   let user;
-
+  console.log(data);
   if (data) {
-    user = data.user;
+    user = data.me;
   }
 
   return (
@@ -18,7 +18,7 @@ function OrderHistory() {
         <Link to="/">
           ← Back to Products
           </Link>
-
+          
         {user ? (
           <>
             <h2>Order History for {user.username}</h2>
