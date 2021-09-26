@@ -28,7 +28,7 @@ const authLink = setContext((_,{headers})=> {
   return{
     headers:{
       ...headers,
-      authorization: token?`Bearer ${token}`:'',
+      authorization: token?`Bearer ${token}`: '',
     },
   };
 });
@@ -36,7 +36,7 @@ const authLink = setContext((_,{headers})=> {
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-})
+});
 
 function App() {
   return (
@@ -49,9 +49,9 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+              <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
               <Route exact path="/records/:id" component={Detail} />
-              <Route exact path="/success" component={Success} />
               <Route component={NoMatch} />
             </Switch>
           </StoreProvider>
