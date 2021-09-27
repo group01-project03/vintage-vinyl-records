@@ -69,6 +69,10 @@ a {
   width: 200px;
 }
 
+.album-cover-history{
+  width: 200px;
+}
+
 .album-grid{
   display: flex;
   flex-wrap: wrap;
@@ -227,6 +231,12 @@ header{
   word-wrap: break-word;
 }
 
+@media screen and (max-width: 1110px){
+  .album-cover-history{
+    width: 125px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .cart {
     position: relative;
@@ -239,5 +249,20 @@ header{
   .cart-closed {
     position: relative;
     margin: 0 auto;
+  }
+
+  .card-record{
+    margin-top: 1rem;
+    border:rgb(122, 55, 128) solid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    margin: 100%
+  }
+
+  .album-cover-history{
+    width: 125px;
   }
 }
