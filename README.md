@@ -15,7 +15,7 @@ An e-commerce website which allows the user to browse through records stored in 
 
 
 ## Installation
-This application can be accessed using the deployed Heroku URL as found [here]( https://vintage-vinyls.herokuapp.com//) or in the [Links](#links) tab. 
+This application can be accessed using the deployed Heroku URL as found [here]( https://vintage-vinyls.herokuapp.com/) or in the [Links](#links) tab. 
 
 To connect to the application on their local host address, the user must clone the repository from GitHub. Once cloned, the user will open their terminal and `npm install` the dependencies as found in the package.json files for the client and sevrer folders. They must also assure that they have MongoDB installed on their computer and then run `npm run seed`. Finally, the user will connect to the server by running `npm run develop` in the root directory. 
 
